@@ -101,7 +101,7 @@ const UserController = {
   async logout(req, res) {
     try {
       const user = await User.findById(req.user.id);
-      const tokenToRemove = req.headers.authorization;
+      const tokenToRemove = req.headers.authorization?.split(' ')[1];
 
       // Remover el token específico del array
       user.tokens = user.tokens.filter((token) => token !== tokenToRemove);

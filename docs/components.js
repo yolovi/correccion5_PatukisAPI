@@ -1,21 +1,18 @@
 module.exports = {
   components: {
-    schemas: {
-      // Respuestas básicas
-      Error: {
-        type: 'object',
-        properties: {
-          message: { type: 'string' },
-          error: { type: 'string' },
-        },
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
       },
+    },
 
-      Success: {
-        type: 'object',
-        properties: {
-          message: { type: 'string' },
-          data: { type: 'object' },
-        },
+    Success: {
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+        data: { type: 'object' },
       },
     },
   },

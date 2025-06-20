@@ -105,8 +105,8 @@ module.exports = {
     },
   },
 
-  // Obtener producto por ID
-  '/products/id/{id}': {
+  // Obtener productos por ID
+  '/products/{id}': {
     get: {
       tags: ['Products'],
       summary: 'Obtener producto por ID',
@@ -150,70 +150,6 @@ module.exports = {
         },
       },
     },
-    // Actualizar producto
-    put: {
-      tags: ['Products'],
-      summary: 'Actualizar producto',
-      parameters: [
-        {
-          name: 'id',
-          in: 'path',
-          required: true,
-          description: 'ID del producto',
-          schema: { type: 'string' },
-        },
-      ],
-      requestBody: {
-        required: true,
-        content: {
-          'application/json': {
-            schema: {
-              type: 'object',
-              properties: {
-                name: { type: 'string' },
-                price: { type: 'number' },
-                image: { type: 'string' },
-              },
-            },
-          },
-        },
-      },
-      responses: {
-        200: {
-          description: 'Producto actualizado con éxito',
-        },
-        500: {
-          description: 'Error del servidor',
-        },
-      },
-    },
-
-    // Eliminar producto
-    delete: {
-      tags: ['Products'],
-      summary: 'Eliminar producto',
-      parameters: [
-        {
-          name: 'id',
-          in: 'path',
-          required: true,
-          description: 'ID del producto',
-          schema: { type: 'string' },
-        },
-      ],
-      responses: {
-        200: {
-          description: 'Producto eliminado con éxito',
-        },
-        500: {
-          description: 'Error del servidor',
-        },
-      },
-    },
-  },
-
-  // Actualizar producto
-  '/products/{id}': {
     put: {
       tags: ['Products'],
       summary: 'Actualizar producto',
