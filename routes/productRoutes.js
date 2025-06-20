@@ -9,7 +9,7 @@ router.delete('/:id', ProductController.delete);
 
 // Rutas de consulta
 router.get('/', ProductController.getAllWithCategories);
-router.get('/id/:id', ProductController.getById);
+router.get('/id/:id', ProductController.getById); // No estoy seguro de esto. COMPROBAR
 router.get('/name/:name', ProductController.getAllByName);
 router.get('/price/:price', ProductController.getAllByPrice);
 router.get('/price-range/:minprice/:maxprice', ProductController.getAllByPriceRange);
