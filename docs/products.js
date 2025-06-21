@@ -42,31 +42,42 @@ module.exports = {
     // Crear producto
     post: {
       tags: ['Products'],
-      summary: 'Crear un nuevo producto',
+      summary: 'Crear un nuevo producto con imagen',
+      security: [{ bearerAuth: [] }],
       requestBody: {
         required: true,
         content: {
-          'application/json': {
+          'multipart/form-data': {
             schema: {
               type: 'object',
               properties: {
                 name: {
                   type: 'string',
                   description: 'Nombre del producto',
-                  example: 'Patito Amarillo',
+                  example: 'Camiseta de algodón',
+                },
+                description: {
+                  type: 'string',
+                  description: 'Descripción del producto',
+                  example: 'Camiseta 100% algodón orgánico',
                 },
                 price: {
                   type: 'number',
                   description: 'Precio del producto',
-                  example: 15.99,
+                  example: 19.99,
                 },
                 id_category: {
                   type: 'string',
-                  description: 'ID de la categoría',
-                  example: '507f1f77bcf86cd799439011',
+                  description: 'ID de la categoría (opcional)',
+                  example: '665e7fa6ddee7a9c782a9434',
+                },
+                image: {
+                  type: 'string',
+                  format: 'binary',
+                  description: 'Imagen del producto (archivo)',
                 },
               },
-              required: ['name', 'price'],
+              required: ['name', 'description', 'price'],
             },
           },
         },
@@ -85,10 +96,13 @@ module.exports = {
                     properties: {
                       _id: { type: 'string' },
                       name: { type: 'string' },
+                      description: { type: 'string' },
                       price: { type: 'number' },
                       image: { type: 'string' },
-                      categories: { type: 'array' },
-                      orders: { type: 'array' },
+                      categories: {
+                        type: 'array',
+                        items: { type: 'string' },
+                      },
                       createdAt: { type: 'string' },
                       updatedAt: { type: 'string' },
                     },
@@ -98,9 +112,8 @@ module.exports = {
             },
           },
         },
-        500: {
-          description: 'Error del servidor',
-        },
+        400: { description: 'Datos incompletos o inválidos' },
+        500: { description: 'Error del servidor' },
       },
     },
   },
@@ -152,26 +165,52 @@ module.exports = {
     },
     put: {
       tags: ['Products'],
-      summary: 'Actualizar producto',
+      summary: 'Actualizar un producto (con o sin nueva imagen)',
+      security: [{ bearerAuth: [] }],
       parameters: [
         {
           name: 'id',
           in: 'path',
           required: true,
-          description: 'ID del producto',
-          schema: { type: 'string' },
+          description: 'ID del producto a actualizar',
+          schema: {
+            type: 'string',
+            example: '665f4c04e97eb7d0f73b1f65',
+          },
         },
       ],
       requestBody: {
-        required: true,
+        required: false,
         content: {
-          'application/json': {
+          'multipart/form-data': {
             schema: {
               type: 'object',
               properties: {
-                name: { type: 'string' },
-                price: { type: 'number' },
-                image: { type: 'string' },
+                name: {
+                  type: 'string',
+                  description: 'Nombre del producto',
+                  example: 'Camiseta actualizada',
+                },
+                description: {
+                  type: 'string',
+                  description: 'Descripción del producto',
+                  example: 'Descripción nueva',
+                },
+                price: {
+                  type: 'number',
+                  description: 'Precio actualizado',
+                  example: 25.99,
+                },
+                id_category: {
+                  type: 'string',
+                  description: 'ID de la categoría',
+                  example: '665e7fa6ddee7a9c782a9434',
+                },
+                image: {
+                  type: 'string',
+                  format: 'binary',
+                  description: 'Nueva imagen del producto (opcional)',
+                },
               },
             },
           },
@@ -180,10 +219,35 @@ module.exports = {
       responses: {
         200: {
           description: 'Producto actualizado con éxito',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  msg: { type: 'string' },
+                  product: {
+                    type: 'object',
+                    properties: {
+                      _id: { type: 'string' },
+                      name: { type: 'string' },
+                      description: { type: 'string' },
+                      price: { type: 'number' },
+                      image: { type: 'string' },
+                      categories: {
+                        type: 'array',
+                        items: { type: 'string' },
+                      },
+                      createdAt: { type: 'string' },
+                      updatedAt: { type: 'string' },
+                    },
+                  },
+                },
+              },
+            },
+          },
         },
-        500: {
-          description: 'Error del servidor',
-        },
+        404: { description: 'Producto no encontrado' },
+        500: { description: 'Error del servidor' },
       },
     },
 
@@ -191,6 +255,7 @@ module.exports = {
     delete: {
       tags: ['Products'],
       summary: 'Eliminar producto',
+      security: [{ bearerAuth: [] }],
       parameters: [
         {
           name: 'id',

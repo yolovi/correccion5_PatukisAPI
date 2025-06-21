@@ -6,7 +6,10 @@ const reviewSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
+    image: {
+      type: String,
+      default: null,
+    },
     product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Product',
@@ -18,7 +21,14 @@ const reviewSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
   },
+
   {
     timestamps: true,
   }

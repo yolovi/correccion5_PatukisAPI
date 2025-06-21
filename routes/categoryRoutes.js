@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const CategoryController = require('../controllers/CategoryController');
+const CategoryController = require('../controllers/categoryController');
+const { authentication, isAdmin } = require('../middlewares/authentication');
 
-router.post('/', CategoryController.create);
-router.put('/:id', CategoryController.update);
-router.delete('/:id', CategoryController.delete);
+router.post('/', /* authentication, isAdmin, */ CategoryController.create);
+router.put('/:id', /* authentication, isAdmin, */ CategoryController.update);
+router.delete('/:id', /* authentication, isAdmin, */ CategoryController.delete);
 router.get('/with-products', CategoryController.getAllWithProducts);
 router.get('/:id', CategoryController.getById);
 router.get('/name/:name', CategoryController.getOneByName);

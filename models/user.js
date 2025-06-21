@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Por favor, introduce una contraseña'],
     },
+    image: {
+      type: String,
+      default: null,
+    },
     role: {
       type: String,
       default: 'user',
@@ -37,6 +41,12 @@ const userSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Order',
+      },
+    ],
+    wishlist: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
       },
     ],
   },

@@ -12,6 +12,7 @@ const productSchema = new mongoose.Schema(
     },
     image: {
       type: String,
+      default: null,
     },
 
     orders: [

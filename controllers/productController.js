@@ -1,6 +1,6 @@
-const Product = require('../models/Product.js');
-const Category = require('../models/Category.js');
-const Review = require('../models/Review.js');
+const Product = require('../models/product.js');
+const Category = require('../models/category.js');
+const Review = require('../models/review.js');
 
 const ProductController = {
   async create(req, res, next) {
@@ -27,10 +27,21 @@ const ProductController = {
 
   async update(req, res) {
     try {
-      await Product.findByIdAndUpdate(req.params.id, req.body);
-      res.send('Producto actualizado con éxito');
+      const updateData = { ...req.body };
+
+      if (req.file) {
+        updateData.image = req.file.path;
+      }
+
+      const product = await Product.findByIdAndUpdate(req.params.id, updateData, { new: true });
+
+      if (!product) {
+        return res.status(404).send({ msg: 'Producto no encontrado' });
+      }
+
+      res.send({ msg: 'Producto actualizado con éxito', product });
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500).send({ msg: 'Error al actualizar producto', error });
     }
   },
 
@@ -46,7 +57,6 @@ const ProductController = {
   async getAllWithCategories(req, res) {
     try {
       const products = await Product.find({}, 'name price').populate('categories', 'name');
-      // .populate('reviews', 'content'); // Nota: necesitarás agregar 'reviews' virtual o cambiar la estructura
       res.send(products);
     } catch (error) {
       res.status(500).send(error);
@@ -56,7 +66,6 @@ const ProductController = {
   async getById(req, res) {
     try {
       const product = await Product.findById(req.params.id, 'name price').populate('categories', 'name');
-      // .populate('reviews', 'content'); // Nota: necesitarás agregar 'reviews' virtual o cambiar la estructura
       res.send(product);
     } catch (error) {
       res.status(500).send(error);

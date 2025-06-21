@@ -4,6 +4,7 @@ const products = require('./products');
 const users = require('./users');
 const categories = require('./category');
 const orders = require('./orders');
+const reviews = require('./reviews');
 
 module.exports = {
   ...basicInfo,
@@ -13,5 +14,6 @@ module.exports = {
     ...users,
     ...categories,
     ...orders,
+    ...reviews,
   },
 };
