@@ -176,4 +176,83 @@ module.exports = {
       },
     },
   },
+
+  '/reviews/{id}/toggleLike': {
+    put: {
+      tags: ['Reviews'],
+      summary: 'Añade o elimina un like de la review para el usuario autenticado',
+      description: 'Si el usuario ya ha dado like a la review, se elimina. Si no, se añade.',
+      parameters: [
+        {
+          name: 'id',
+          in: 'path',
+          description: 'ID de la review',
+          required: true,
+          schema: {
+            type: 'string',
+            format: 'ObjectId',
+          },
+        },
+      ],
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+      responses: {
+        200: {
+          description: 'Like toggled correctamente',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  message: {
+                    type: 'string',
+                    example: 'Like toggled',
+                  },
+                  likesCount: {
+                    type: 'integer',
+                    example: 5,
+                  },
+                },
+              },
+            },
+          },
+        },
+        404: {
+          description: 'Review no encontrada',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  message: {
+                    type: 'string',
+                    example: 'Review no encontrada',
+                  },
+                },
+              },
+            },
+          },
+        },
+        500: {
+          description: 'Error interno del servidor',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  message: {
+                    type: 'string',
+                    example: 'Error interno del servidor',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 };

@@ -57,6 +57,33 @@ const ReviewController = {
       res.status(500).send(error);
     }
   },
+
+  async toggleLike(req, res) {
+    try {
+      const reviewId = req.params.id;
+      const userId = req.user._id;
+
+      const review = await Review.findById(reviewId);
+
+      if (!review) {
+        return res.status(404).json({ message: 'Review no encontrada' });
+      }
+
+      const index = review.likes.indexOf(userId);
+
+      if (index === -1) {
+        review.likes.push(userId);
+      } else {
+        review.likes.splice(index, 1);
+      }
+
+      await review.save();
+
+      return res.status(200).json({ message: 'Like toggled', likesCount: review.likes.length });
+    } catch (error) {
+      return res.status(500).json({ message: 'Error interno del servidor' });
+    }
+  },
 };
 
 module.exports = ReviewController;
