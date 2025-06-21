@@ -13,13 +13,8 @@ const CategoryController = {
 
   async update(req, res) {
     try {
-      const updated = await Category.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-      );
-      if (!updated)
-        return res.status(404).send({ msg: "Categoría no encontrada" });
+      const updated = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      if (!updated) return res.status(404).send({ msg: "Categoría no encontrada" });
       res.send("Categoría actualizada con éxito");
     } catch (error) {
       res.status(500).send(error);
@@ -29,8 +24,7 @@ const CategoryController = {
   async delete(req, res) {
     try {
       const deleted = await Category.findByIdAndDelete(req.params.id);
-      if (!deleted)
-        return res.status(404).send({ msg: "Categoría no encontrada" });
+      if (!deleted) return res.status(404).send({ msg: "Categoría no encontrada" });
       res.send("Categoría eliminada con éxito");
     } catch (error) {
       res.status(500).send(error);
@@ -43,8 +37,8 @@ const CategoryController = {
       const categoriesWithProducts = await Promise.all(
         categories.map(async (category) => {
           const products = await Product.find({
-            category: category._id,
-          }).select("id name price image");
+            categories: category._id,
+          }).select("id name");
           return { ...category, products };
         })
       );
@@ -57,8 +51,7 @@ const CategoryController = {
   async getById(req, res) {
     try {
       const category = await Category.findById(req.params.id);
-      if (!category)
-        return res.status(404).send({ msg: "Categoría no encontrada" });
+      if (!category) return res.status(404).send({ msg: "Categoría no encontrada" });
       res.send(category);
     } catch (error) {
       res.status(500).send(error);
