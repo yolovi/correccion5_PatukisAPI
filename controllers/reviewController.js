@@ -4,7 +4,15 @@ const User = require('../models/user');
 const ReviewController = {
   async create(req, res) {
     try {
-      const review = await Review.create(req.body);
+      const imagePath = req.file ? req.file.path : null;
+
+      const review = new Review({
+        ...req.body,
+        image: imagePath,
+      });
+
+      await review.save();
+
       res.status(201).send({ msg: 'Review creada con éxito', review });
     } catch (error) {
       res.status(500).send(error);
@@ -42,8 +50,26 @@ const ReviewController = {
 
   async update(req, res) {
     try {
-      await Review.findByIdAndUpdate(req.params.id, req.body);
-      res.send({ msg: 'Review actualizada con éxito' });
+      const imagePath = req.file ? req.file.path : undefined;
+
+      const updateData = {
+        ...req.body,
+      };
+
+      // Solo actualizamos la imagen si se proporciona una nueva
+      if (imagePath) {
+        updateData.image = imagePath;
+      }
+
+      const review = await Review.findByIdAndUpdate(req.params.id, updateData, {
+        new: true,
+      });
+
+      if (!review) {
+        return res.status(404).send({ msg: 'Review no encontrada' });
+      }
+
+      res.send({ msg: 'Review actualizada con éxito', review });
     } catch (error) {
       res.status(500).send(error);
     }

@@ -8,6 +8,7 @@ const reviewSchema = new mongoose.Schema(
     },
     image: {
       type: String,
+      default: null,
     },
     product: {
       type: mongoose.Schema.Types.ObjectId,

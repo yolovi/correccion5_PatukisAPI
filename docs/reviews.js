@@ -6,21 +6,29 @@ module.exports = {
       requestBody: {
         required: true,
         content: {
-          'application/json': {
+          'multipart/form-data': {
             schema: {
               type: 'object',
               properties: {
                 content: {
                   type: 'string',
-                  example: 'Este producto es excelente',
+                  description: 'Contenido de la review',
+                  example: 'Excelente producto, muy recomendado',
                 },
                 product: {
                   type: 'string',
-                  example: '60d21b4967d0d8992e610c86',
+                  description: 'ID del producto reseñado',
+                  example: '6660b9f8f93ae8e1234abcd1',
                 },
                 user: {
                   type: 'string',
-                  example: '60d21b4667d0d8992e610c85',
+                  description: 'ID del usuario que hace la review',
+                  example: '665ff9aef12bcd2345ef6789',
+                },
+                image: {
+                  type: 'string',
+                  format: 'binary',
+                  description: 'Imagen opcional adjunta a la review',
                 },
               },
               required: ['content', 'product', 'user'],
@@ -31,10 +39,31 @@ module.exports = {
       responses: {
         201: {
           description: 'Review creada con éxito',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  msg: { type: 'string', example: 'Review creada con éxito' },
+                  review: {
+                    type: 'object',
+                    properties: {
+                      _id: { type: 'string' },
+                      content: { type: 'string' },
+                      product: { type: 'string' },
+                      user: { type: 'string' },
+                      image: { type: 'string', nullable: true },
+                      createdAt: { type: 'string' },
+                      updatedAt: { type: 'string' },
+                    },
+                  },
+                },
+              },
+            },
+          },
         },
-        500: {
-          description: 'Error del servidor',
-        },
+        400: { description: 'Faltan datos obligatorios' },
+        500: { description: 'Error del servidor' },
       },
     },
 
@@ -100,23 +129,46 @@ module.exports = {
 
     put: {
       tags: ['Reviews'],
-      summary: 'Actualizar una review por ID',
+      summary: 'Actualizar una review existente',
       parameters: [
         {
           name: 'id',
           in: 'path',
+          description: 'ID de la review a actualizar',
           required: true,
-          schema: { type: 'string' },
+          schema: {
+            type: 'string',
+            example: '6660d2f9e541da2cf4e000ab',
+          },
         },
       ],
       requestBody: {
         required: true,
         content: {
-          'application/json': {
+          'multipart/form-data': {
             schema: {
               type: 'object',
               properties: {
-                content: { type: 'string' },
+                content: {
+                  type: 'string',
+                  description: 'Nuevo contenido de la review',
+                  example: 'He cambiado de opinión, no me gustó tanto.',
+                },
+                product: {
+                  type: 'string',
+                  description: 'ID del producto (opcional si no se actualiza)',
+                  example: '6660b9f8f93ae8e1234abcd1',
+                },
+                user: {
+                  type: 'string',
+                  description: 'ID del usuario (opcional si no se actualiza)',
+                  example: '665ff9aef12bcd2345ef6789',
+                },
+                image: {
+                  type: 'string',
+                  format: 'binary',
+                  description: 'Nueva imagen para la review (opcional)',
+                },
               },
             },
           },
@@ -125,6 +177,34 @@ module.exports = {
       responses: {
         200: {
           description: 'Review actualizada con éxito',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  msg: {
+                    type: 'string',
+                    example: 'Review actualizada con éxito',
+                  },
+                  review: {
+                    type: 'object',
+                    properties: {
+                      _id: { type: 'string' },
+                      content: { type: 'string' },
+                      product: { type: 'string' },
+                      user: { type: 'string' },
+                      image: { type: 'string', nullable: true },
+                      createdAt: { type: 'string' },
+                      updatedAt: { type: 'string' },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        404: {
+          description: 'Review no encontrada',
         },
         500: {
           description: 'Error del servidor',

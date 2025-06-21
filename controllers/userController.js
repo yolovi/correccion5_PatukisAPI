@@ -16,6 +16,7 @@ const UserController = {
         password: password,
         role: 'user',
         confirmed: false,
+        // image: '/uploads/default.jpg', // Imagen por defecto asignada al nuevo usuario
       });
 
       // const emailToken = jwt.sign({ email: req.body.email }, jwt_secret, { expiresIn: '48h' });
@@ -161,6 +162,36 @@ const UserController = {
     } catch (error) {
       console.error(error);
       res.status(500).json({ msg: 'Error al obtener el perfil del usuario' });
+    }
+  },
+
+  async updateMe(req, res, next) {
+    try {
+      const userId = req.user._id;
+      const { name, last_name, email } = req.body;
+
+      const updateFields = {};
+
+      if (name) updateFields.name = name;
+      if (last_name) updateFields.last_name = last_name;
+      if (email) updateFields.email = email;
+
+      if (req.file) {
+        updateFields.image = `/uploads/users/${req.file.filename}`; // Usando su middleware
+      }
+
+      const updatedUser = await User.findByIdAndUpdate(userId, updateFields, { new: true }).select('-password -tokens');
+
+      if (!updatedUser) {
+        return res.status(404).json({ msg: 'Usuario no encontrado' });
+      }
+
+      res.status(200).json({
+        msg: 'Perfil actualizado con éxito',
+        user: updatedUser,
+      });
+    } catch (error) {
+      next(error);
     }
   },
 };

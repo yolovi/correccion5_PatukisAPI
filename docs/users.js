@@ -417,5 +417,90 @@ module.exports = {
         },
       },
     },
+
+    put: {
+      tags: ['Users'],
+      summary: 'Actualizar perfil del usuario autenticado',
+      description: 'Permite al usuario autenticado actualizar su nombre, apellido, email e imagen de perfil.',
+      requestBody: {
+        required: true,
+        content: {
+          'multipart/form-data': {
+            schema: {
+              type: 'object',
+              properties: {
+                name: {
+                  type: 'string',
+                  description: 'Nuevo nombre del usuario',
+                  example: 'Juan',
+                },
+                last_name: {
+                  type: 'string',
+                  description: 'Nuevo apellido del usuario',
+                  example: 'Pérez',
+                },
+                email: {
+                  type: 'string',
+                  description: 'Nuevo correo electrónico',
+                  example: 'juanperez@example.com',
+                },
+                image: {
+                  type: 'string',
+                  format: 'binary',
+                  description: 'Nueva imagen de perfil (opcional)',
+                },
+              },
+            },
+          },
+        },
+      },
+      responses: {
+        200: {
+          description: 'Perfil actualizado con éxito',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  msg: {
+                    type: 'string',
+                    example: 'Perfil actualizado con éxito',
+                  },
+                  user: {
+                    type: 'object',
+                    properties: {
+                      _id: { type: 'string', example: '665ff9aef12bcd2345ef6789' },
+                      name: { type: 'string', example: 'Juan' },
+                      last_name: { type: 'string', example: 'Pérez' },
+                      email: { type: 'string', example: 'juanperez@example.com' },
+                      image: { type: 'string', example: '/uploads/users/avatar123.png', nullable: true },
+                      role: { type: 'string', example: 'user' },
+                      confirmed: { type: 'boolean', example: true },
+                      adress: { type: 'string', example: 'Calle Falsa 123' },
+                      createdAt: { type: 'string' },
+                      updatedAt: { type: 'string' },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        401: {
+          description: 'No autorizado (token inválido o no enviado)',
+        },
+        404: {
+          description: 'Usuario no encontrado',
+        },
+        500: {
+          description: 'Error del servidor',
+        },
+      },
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+    },
   },
 };
