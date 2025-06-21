@@ -112,6 +112,57 @@ const UserController = {
       res.status(500).send({ msg: 'Hubo un problema al tratar de desconectarte' });
     }
   },
+
+  async toggleWishlist(req, res) {
+    try {
+      const { productId } = req.params;
+      const userId = req.user._id;
+
+      const user = await User.findById(userId);
+
+      if (!user) {
+        return res.status(404).send({ message: 'Usuario no encontrado.' });
+      }
+
+      const alreadyInWishlist = user.wishlist.includes(productId);
+
+      if (alreadyInWishlist) {
+        user.wishlist.pull(productId);
+      } else {
+        user.wishlist.push(productId);
+      }
+
+      await user.save();
+
+      res.status(200).send({
+        message: alreadyInWishlist ? 'Producto eliminado de la wishlist' : 'Producto añadido a la wishlist',
+        wishlist: user.wishlist,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: 'Error al actualizar la wishlist.' });
+    }
+  },
+
+  async getProfile(req, res) {
+    try {
+      const user = await User.findById(req.user._id)
+        .select('-password -tokens') // Oculta contraseña y tokens
+        .populate({
+          path: 'wishlist',
+          select: 'name price',
+        });
+
+      if (!user) {
+        return res.status(404).json({ msg: 'Usuario no encontrado' });
+      }
+
+      res.status(200).json(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: 'Error al obtener el perfil del usuario' });
+    }
+  },
 };
 
 module.exports = UserController;

@@ -8,5 +8,7 @@ router.post('/login', UserController.login);
 router.get('/confirm/:emailToken', UserController.confirm);
 router.get('/:id', authentication, UserController.getById);
 router.post('/logout', authentication, UserController.logout);
+router.get('/me', authentication, UserController.getProfile);
+router.put('/wishlist/:productId', authentication, UserController.toggleWishlist);
 
 module.exports = router;

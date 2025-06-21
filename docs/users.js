@@ -295,4 +295,127 @@ module.exports = {
       },
     },
   },
+  '/users/wishlist/{productId}': {
+    put: {
+      tags: ['Users'],
+      summary: 'Añadir o quitar un producto de la wishlist',
+      description:
+        'Permite al usuario autenticado añadir o eliminar un producto de su lista de deseos (wishlist). Si el producto ya está en la lista, se eliminará; si no está, se añadirá.',
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+      parameters: [
+        {
+          name: 'productId',
+          in: 'path',
+          required: true,
+          description: 'ID del producto a añadir o eliminar de la wishlist',
+          schema: {
+            type: 'string',
+            example: '64a7b8c9d1e2f3g4h5i6j7k8',
+          },
+        },
+      ],
+      responses: {
+        200: {
+          description: 'Wishlist actualizada correctamente',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  message: {
+                    type: 'string',
+                    example: 'Producto añadido a la wishlist',
+                  },
+                  wishlist: {
+                    type: 'array',
+                    items: {
+                      type: 'object',
+                      properties: {
+                        _id: {
+                          type: 'string',
+                          example: '64a7b8c9d1e2f3g4h5i6j7k8',
+                        },
+                        name: {
+                          type: 'string',
+                          example: 'Patito de goma pirata',
+                        },
+                        price: {
+                          type: 'number',
+                          example: 9.99,
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        404: {
+          description: 'Usuario o producto no encontrado',
+        },
+        401: {
+          description: 'No autorizado - Token requerido',
+        },
+        500: {
+          description: 'Error al actualizar la wishlist',
+        },
+      },
+    },
+  },
+
+  '/users/me': {
+    get: {
+      tags: ['Users'],
+      summary: 'Obtener perfil del usuario autenticado',
+      description: 'Devuelve los datos del usuario autenticado junto con su wishlist',
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+      responses: {
+        200: {
+          description: 'Perfil del usuario',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  _id: { type: 'string', example: '64a7b8c9d1e2f3g4h5i6j7k8' },
+                  name: { type: 'string', example: 'Juan' },
+                  last_name: { type: 'string', example: 'Pérez' },
+                  email: { type: 'string', example: 'juan@example.com' },
+                  adress: { type: 'string', example: 'Calle Mayor 123, Madrid' },
+                  role: { type: 'string', example: 'user' },
+                  confirmed: { type: 'boolean', example: true },
+                  wishlist: {
+                    type: 'array',
+                    items: {
+                      type: 'object',
+                      properties: {
+                        _id: { type: 'string', example: '665b2d182c8a7a7b9b331234' },
+                        name: { type: 'string', example: 'Camiseta Duck' },
+                        price: { type: 'number', example: 19.99 },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        401: {
+          description: 'No autorizado - token faltante o inválido',
+        },
+        500: {
+          description: 'Error del servidor',
+        },
+      },
+    },
+  },
 };
