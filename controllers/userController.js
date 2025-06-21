@@ -1,6 +1,6 @@
 require('dotenv').config();
-const User = require('../models/User.js');
-// const Order = require('../models/Order.js');
+const User = require('../models/user.js');
+// const Order = require('../models/order.js');
 const jwt_secret = process.env.JWT_SECRET;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -18,15 +18,15 @@ const UserController = {
         confirmed: false,
       });
 
-      const emailToken = jwt.sign({ email: req.body.email }, jwt_secret, { expiresIn: '48h' });
-      const url = 'http://localhost:3000/users/confirm/' + emailToken;
+      // const emailToken = jwt.sign({ email: req.body.email }, jwt_secret, { expiresIn: '48h' });
+      // const url = 'http://localhost:3000/users/confirm/' + emailToken;
 
-      await transporter.sendMail({
-        to: req.body.email,
-        subject: 'Confirma tu registro',
-        html: `<h3>Bienvenid@ a la DuckWeb, estás apunto de registrarte</h3>
-        <a href="${url}">Confirma tu registro</a>`,
-      });
+      // await transporter.sendMail({
+      //   to: req.body.email,
+      //   subject: 'Confirma tu registro',
+      //   html: `<h3>Bienvenid@ a la DuckWeb, estás apunto de registrarte</h3>
+      //   <a href="${url}">Confirma tu registro</a>`,
+      // });
 
       res.status(201).send({ msg: 'Te hemos enviado un correo para confirmar el registro', user });
     } catch (error) {

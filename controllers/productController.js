@@ -1,6 +1,6 @@
-const Product = require('../models/Product.js');
-const Category = require('../models/Category.js');
-const Review = require('../models/Review.js');
+const Product = require('../models/product.js');
+const Category = require('../models/category.js');
+const Review = require('../models/review.js');
 
 const ProductController = {
   async create(req, res, next) {

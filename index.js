@@ -17,6 +17,7 @@ app.use('/products', require('./routes/productRoutes'));
 app.use('/users', require('./routes/userRoutes'));
 app.use('/categories', require('./routes/categoryRoutes'));
 app.use('/orders', require('./routes/orderRoutes'));
+app.use('/reviews', require('./routes/reviewRoutes'));
 
 app.use(handleTypeError);
 
