@@ -15,6 +15,8 @@ app.use(express.json());
 // ENDPOINTS
 app.use('/products', require('./routes/productRoutes'));
 app.use('/users', require('./routes/userRoutes'));
+app.use('/categories', require('./routes/categoryRoutes'));
+app.use('/orders', require('./routes/orderRoutes'));
 
 app.use(handleTypeError);
 
