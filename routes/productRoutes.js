@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const { uploadFor } = require('../middlewares/multer');
 const ProductController = require('../controllers/productController');
 
 // Rutas CRUD básicas
-router.post('/', /* upload.single('image'), */ ProductController.create);
-router.put('/:id', ProductController.update);
+router.post('/', uploadFor('products').single('image'), ProductController.create);
+router.put('/:id', uploadFor('products').single('image'), ProductController.update);
 router.delete('/:id', ProductController.delete);
 
 // Rutas de consulta
