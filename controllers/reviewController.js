@@ -9,13 +9,15 @@ const ReviewController = {
       const review = new Review({
         ...req.body,
         image: imagePath,
+        user: req.user._id,
       });
 
       await review.save();
 
       res.status(201).send({ msg: 'Review creada con éxito', review });
     } catch (error) {
-      res.status(500).send(error);
+      console.error('Error al crear review:', error);
+      res.status(500).send({ msg: 'Error interno al crear la review' });
     }
   },
 
@@ -52,15 +54,19 @@ const ReviewController = {
     try {
       const imagePath = req.file ? req.file.path : undefined;
 
+      // No permitimos que cambien el autor
+      const { user, ...restBody } = req.body;
+
       const updateData = {
-        ...req.body,
+        ...restBody,
       };
 
-      // Solo actualizamos la imagen si se proporciona una nueva
+      // Solo actualizamos la imagen si hay nueva
       if (imagePath) {
         updateData.image = imagePath;
       }
 
+      // Buscamos y actualizamos la review por id
       const review = await Review.findByIdAndUpdate(req.params.id, updateData, {
         new: true,
       });
@@ -71,7 +77,8 @@ const ReviewController = {
 
       res.send({ msg: 'Review actualizada con éxito', review });
     } catch (error) {
-      res.status(500).send(error);
+      console.error('Error al actualizar review:', error);
+      res.status(500).send({ msg: 'Error interno al actualizar la review' });
     }
   },
 

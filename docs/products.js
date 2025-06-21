@@ -43,6 +43,7 @@ module.exports = {
     post: {
       tags: ['Products'],
       summary: 'Crear un nuevo producto con imagen',
+      security: [{ bearerAuth: [] }],
       requestBody: {
         required: true,
         content: {
@@ -165,6 +166,7 @@ module.exports = {
     put: {
       tags: ['Products'],
       summary: 'Actualizar un producto (con o sin nueva imagen)',
+      security: [{ bearerAuth: [] }],
       parameters: [
         {
           name: 'id',
@@ -253,6 +255,7 @@ module.exports = {
     delete: {
       tags: ['Products'],
       summary: 'Eliminar producto',
+      security: [{ bearerAuth: [] }],
       parameters: [
         {
           name: 'id',

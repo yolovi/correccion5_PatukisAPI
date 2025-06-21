@@ -3,6 +3,7 @@ module.exports = {
     post: {
       tags: ['Reviews'],
       summary: 'Crear una nueva review',
+      security: [{ bearerAuth: [] }],
       requestBody: {
         required: true,
         content: {
@@ -20,18 +21,13 @@ module.exports = {
                   description: 'ID del producto reseñado',
                   example: '6660b9f8f93ae8e1234abcd1',
                 },
-                user: {
-                  type: 'string',
-                  description: 'ID del usuario que hace la review',
-                  example: '665ff9aef12bcd2345ef6789',
-                },
                 image: {
                   type: 'string',
                   format: 'binary',
                   description: 'Imagen opcional adjunta a la review',
                 },
               },
-              required: ['content', 'product', 'user'],
+              required: ['content', 'product'],
             },
           },
         },
@@ -130,6 +126,7 @@ module.exports = {
     put: {
       tags: ['Reviews'],
       summary: 'Actualizar una review existente',
+      security: [{ bearerAuth: [] }],
       parameters: [
         {
           name: 'id',
@@ -158,11 +155,6 @@ module.exports = {
                   type: 'string',
                   description: 'ID del producto (opcional si no se actualiza)',
                   example: '6660b9f8f93ae8e1234abcd1',
-                },
-                user: {
-                  type: 'string',
-                  description: 'ID del usuario (opcional si no se actualiza)',
-                  example: '665ff9aef12bcd2345ef6789',
                 },
                 image: {
                   type: 'string',
@@ -215,6 +207,7 @@ module.exports = {
     delete: {
       tags: ['Reviews'],
       summary: 'Eliminar una review por ID',
+      security: [{ bearerAuth: [] }],
       parameters: [
         {
           name: 'id',
@@ -262,6 +255,7 @@ module.exports = {
       tags: ['Reviews'],
       summary: 'Añade o elimina un like de la review para el usuario autenticado',
       description: 'Si el usuario ya ha dado like a la review, se elimina. Si no, se añade.',
+      security: [{ bearerAuth: [] }],
       parameters: [
         {
           name: 'id',
@@ -272,11 +266,6 @@ module.exports = {
             type: 'string',
             format: 'ObjectId',
           },
-        },
-      ],
-      security: [
-        {
-          bearerAuth: [],
         },
       ],
       responses: {
