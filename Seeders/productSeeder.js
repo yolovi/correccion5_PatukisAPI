@@ -48,8 +48,7 @@ const seedProducts = async () => {
         price: 19,
         description:
           "Este altavoz patuno no miente: sus caderas se mueven solo con reguetón. Ideal para animar el nido. ¡Shake that cuack!",
-        image:
-          "https://drive.google.com/file/d/1hqHjvpa5_sWhwIYWV9BGUzhvq9IUYWoh/view?usp=sharing",
+        image: "https://drive.google.com/file/d/1hqHjvpa5_sWhwIYWV9BGUzhvq9IUYWoh/view?usp=sharing",
         categories: [cantante._id, celebridad._id, megacuak.id],
       },
       {
@@ -57,8 +56,7 @@ const seedProducts = async () => {
         price: 25,
         description:
           "Saltos, patadas y graznidos acrobáticos. Este pato experto en kung-fu hace piruetas con un solo dedo y sobrevive a cualquier estantería.",
-        image:
-          "https://drive.google.com/file/d/1sjRI3yZhKP0-7RVXw-CUXckNoRnECGDh/view?usp=sharing",
+        image: "https://drive.google.com/file/d/1sjRI3yZhKP0-7RVXw-CUXckNoRnECGDh/view?usp=sharing",
         categories: [actor._id, cuakito._id, megacuak.id],
       },
       {
@@ -66,8 +64,7 @@ const seedProducts = async () => {
         price: 150,
         description:
           "Invencible, indestructible y... graznador. Este patito rompe lo que sea con la mirada. Si Duck Norris te mira, ya es demasiado tarde.",
-        image:
-          "https://drive.google.com/file/d/1Eu-2dSDAJtSv8OUQFZ6j98NSIEjSRyif/view?usp=sharing",
+        image: "https://drive.google.com/file/d/1Eu-2dSDAJtSv8OUQFZ6j98NSIEjSRyif/view?usp=sharing",
         categories: [actor._id, celebridad.id, megacuak.id, cuakito.id],
       },
       {
@@ -75,8 +72,7 @@ const seedProducts = async () => {
         price: 28,
         description:
           "Gorro excéntrico con estilo extravagante. Ideal para fiestas, desfiles o conciertos en el lago. Porque Born this Cuack.",
-        image:
-          "https://drive.google.com/file/d/1pD2bVQrJg8eSwAroyHXdzSo3VIZVFN2z/view?usp=sharing",
+        image: "https://drive.google.com/file/d/1pD2bVQrJg8eSwAroyHXdzSo3VIZVFN2z/view?usp=sharing",
         categories: [cantante._id, megacuak._id, celebridad._id],
       },
       {
@@ -84,8 +80,7 @@ const seedProducts = async () => {
         price: 18,
         description:
           "Zapatillas miniatura con cámara de aire... ¡para patos! Cada salto deja una huella en forma de charquito. Fly over the pond.",
-        image:
-          "https://drive.google.com/file/d/1J_8CuwoFKZkssjKqKh1rFsQrleom9txX/view?usp=sharing",
+        image: "https://drive.google.com/file/d/1J_8CuwoFKZkssjKqKh1rFsQrleom9txX/view?usp=sharing",
         categories: [deportista._id],
       },
       {
@@ -93,8 +88,7 @@ const seedProducts = async () => {
         price: 15,
         description:
           "Micrófono patuno que escupe rimas con flow. Viene con capucha y actitud. Ideal para batallas de freestyle junto al lago.",
-        image:
-          "https://drive.google.com/file/d/1rlBHuquvCnNA-XIRBJFR8M0RYHtbK29r/view?usp=sharing",
+        image: "https://drive.google.com/file/d/1rlBHuquvCnNA-XIRBJFR8M0RYHtbK29r/view?usp=sharing",
         categories: [cantante._id, cuakito._id],
       },
       {
@@ -102,8 +96,7 @@ const seedProducts = async () => {
         price: 12,
         description:
           "Perfume con esencia a estanque misterioso. Un aroma irresistible con notas de nenúfar y pasión patuna. Un cuack, mil emociones.",
-        image:
-          "https://drive.google.com/file/d/1cIz0RAvPlDuMeCuO1Nzz3L_r585PTZKf/view?usp=sharing",
+        image: "https://drive.google.com/file/d/1cIz0RAvPlDuMeCuO1Nzz3L_r585PTZKf/view?usp=sharing",
         categories: [actor._id, cuakito.id],
       },
       {
@@ -111,8 +104,7 @@ const seedProducts = async () => {
         price: 8,
         description:
           "Balón legendario para entrenar en la charca. Precisión alemana y cuack estratégico. El mediocampista que todo estanque necesita.",
-        image:
-          "https://drive.google.com/file/d/12SaX9AAxOs3YIviD1L0kJ65Qk7h-nX5z/view?usp=sharing",
+        image: "https://drive.google.com/file/d/12SaX9AAxOs3YIviD1L0kJ65Qk7h-nX5z/view?usp=sharing",
         categories: [deportista._id, celebridad._id],
       },
       {
@@ -120,8 +112,7 @@ const seedProducts = async () => {
         price: 24,
         description:
           "Cuaderno mágico donde cada página tiene aroma a pluma mojada. Para escribir cuentos épicos con un toque de realismo... patuno.",
-        image:
-          "https://drive.google.com/file/d/1FlCd9i_BxtBmqPqaULU393jHn7VDT7R6/view?usp=sharing",
+        image: "https://drive.google.com/file/d/1FlCd9i_BxtBmqPqaULU393jHn7VDT7R6/view?usp=sharing",
         categories: [escritor._id, megacuak.id],
       },
       {
@@ -129,16 +120,24 @@ const seedProducts = async () => {
         price: 14,
         description:
           "Micrófono vintage con voz de pato y efecto reverb romántico. Ideal para serenatas en la charca. Solo para patos con alma de balada.",
-        image:
-          "https://drive.google.com/file/d/1BvyUcRJ634f6bUeiv5KjAgwDLo8roJ6M/view?usp=sharing",
+        image: "https://drive.google.com/file/d/1BvyUcRJ634f6bUeiv5KjAgwDLo8roJ6M/view?usp=sharing",
         categories: [cantante.id, cuakito.id],
       },
     ];
 
     await Product.deleteMany();
-    await Product.insertMany(products);
+    const insertedProducts = await Product.insertMany(products);
 
-    console.log("✅ Productos insertados correctamente");
+    // Asociar productos a sus categorías
+    for (const product of insertedProducts) {
+      for (const categoryId of product.categories) {
+        await Category.findByIdAndUpdate(categoryId, {
+          $addToSet: { products: product._id },
+        });
+      }
+    }
+
+    console.log("✅ Productos insertados y asociados a categorías correctamente");
     process.exit();
   } catch (error) {
     console.error("❌ Error al insertar productos:", error);
