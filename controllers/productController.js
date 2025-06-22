@@ -86,7 +86,7 @@ const ProductController = {
     try {
       const products = await Product.find(
         { price: req.params.price }, // Equivale a Op.eq
-        'name price'
+        'name price image'
       );
       res.send(products);
     } catch (error) {
@@ -100,7 +100,7 @@ const ProductController = {
       const maxprice = parseFloat(req.params.maxprice);
       const products = await Product.find(
         { price: { $gte: minprice, $lte: maxprice } }, // $gte y $lte equivalen a BETWEEN
-        'name price'
+        'name price image'
       );
       res.send(products);
     } catch (error) {
