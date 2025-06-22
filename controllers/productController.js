@@ -27,10 +27,21 @@ const ProductController = {
 
   async update(req, res) {
     try {
-      await Product.findByIdAndUpdate(req.params.id, req.body);
-      res.send("Producto actualizado con éxito");
+      const updateData = { ...req.body };
+
+      if (req.file) {
+        updateData.image = req.file.path;
+      }
+
+      const product = await Product.findByIdAndUpdate(req.params.id, updateData, { new: true });
+
+      if (!product) {
+        return res.status(404).send({ msg: "Producto no encontrado" });
+      }
+
+      res.send({ msg: "Producto actualizado con éxito", product });
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500).send({ msg: "Error al actualizar producto", error });
     }
   },
 
@@ -45,10 +56,10 @@ const ProductController = {
 
   async getAllWithCategories(req, res) {
     try {
-      const products = await Product.find(
-        {},
-        "name price description image"
-      ).populate("categories", "name");
+      const products = await Product.find({}, "name price description image").populate(
+        "categories",
+        "name"
+      );
       // .populate('reviews', 'content'); // Nota: necesitarás agregar 'reviews' virtual o cambiar la estructura
       res.send(products);
     } catch (error) {

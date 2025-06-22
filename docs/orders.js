@@ -4,6 +4,7 @@ module.exports = {
     post: {
       tags: ['Orders'],
       summary: 'Crear una nueva orden',
+      security: [{ bearerAuth: [] }],
       requestBody: {
         required: true,
         content: {
@@ -67,6 +68,7 @@ module.exports = {
     get: {
       tags: ['Orders'],
       summary: 'Obtener todas las órdenes con detalles de usuario y productos',
+      security: [{ bearerAuth: [] }],
       responses: {
         200: {
           description: 'Lista de órdenes con productos y usuario',

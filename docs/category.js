@@ -46,9 +46,8 @@ module.exports = {
         500: { description: "Error del servidor" },
       },
     },
-  },
-  // Obtener todas las categorías con productos
-  "/categories/with-products": {
+
+    // Obtener todas las categorías con productos
     get: {
       tags: ["Categories"],
       summary: "Obtener todas las categorías con sus productos",

@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Review = require('../models/review');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -29,7 +30,7 @@ const authentication = async (req, res, next) => {
 };
 
 const isAdmin = async (req, res, next) => {
-  const admins = ['admin', 'superadmin'];
+  const admins = ['mamapato'];
   if (!admins.includes(req.user.role)) {
     return res.status(403).send({ msg: 'No tienes permisos' });
   }
@@ -38,13 +39,20 @@ const isAdmin = async (req, res, next) => {
 
 const isAuthorReview = async (req, res, next) => {
   try {
-    const post = await Post.findById(req.params._id);
-    if (post.author.toString() !== req.user._id.toString()) {
-      return res.status(403).send({ msg: 'Este post no es tuyo' });
+    const review = await Review.findById(req.params.id);
+
+    if (!review) {
+      return res.status(404).json({ msg: 'Review no encontrada' });
     }
+
+    if (review.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ msg: 'No tiene permiso para modificar esta review' });
+    }
+
     next();
   } catch (error) {
-    res.status(500).send('Ha habido un problema al comprobar la autoría de la Review');
+    console.error('Error en middleware isAuthorReview:', error.message);
+    res.status(500).json({ msg: 'Error interno del servidor' });
   }
 };
 
