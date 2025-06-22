@@ -1,6 +1,6 @@
-const Product = require('../models/product.js');
-const Category = require('../models/category.js');
-const Review = require('../models/review.js');
+const Product = require("../models/product.js");
+const Category = require("../models/category.js");
+const Review = require("../models/review.js");
 
 const ProductController = {
   async create(req, res, next) {
@@ -19,7 +19,7 @@ const ProductController = {
       }
 
       await product.save();
-      res.status(201).send({ msg: 'Producto creado con éxito', product });
+      res.status(201).send({ msg: "Producto creado con éxito", product });
     } catch (error) {
       next(error);
     }
@@ -39,11 +39,7 @@ const ProductController = {
         return res.status(404).send({ msg: "Producto no encontrado" });
       }
 
-<<<<<<< HEAD
       res.send({ msg: "Producto actualizado con éxito", product });
-=======
-      res.send({ msg: 'Producto actualizado con éxito', product });
->>>>>>> develop
     } catch (error) {
       res.status(500).send({ msg: "Error al actualizar producto", error });
     }
@@ -52,7 +48,7 @@ const ProductController = {
   async delete(req, res) {
     try {
       await Product.findByIdAndDelete(req.params.id);
-      res.send('Producto eliminado con éxito');
+      res.send("Producto eliminado con éxito");
     } catch (error) {
       res.status(500).send(error);
     }
@@ -60,15 +56,11 @@ const ProductController = {
 
   async getAllWithCategories(req, res) {
     try {
-<<<<<<< HEAD
       const products = await Product.find({}, "name price description image").populate(
         "categories",
         "name"
       );
       // .populate('reviews', 'content'); // Nota: necesitarás agregar 'reviews' virtual o cambiar la estructura
-=======
-      const products = await Product.find({}, 'name price').populate('categories', 'name');
->>>>>>> develop
       res.send(products);
     } catch (error) {
       res.status(500).send(error);
@@ -77,15 +69,11 @@ const ProductController = {
 
   async getById(req, res) {
     try {
-<<<<<<< HEAD
       const product = await Product.findById(
         req.params.id,
         "name price description image"
       ).populate("categories", "name");
       // .populate('reviews', 'content'); // Nota: necesitarás agregar 'reviews' virtual o cambiar la estructura
-=======
-      const product = await Product.findById(req.params.id, 'name price').populate('categories', 'name');
->>>>>>> develop
       res.send(product);
     } catch (error) {
       res.status(500).send(error);
@@ -94,7 +82,7 @@ const ProductController = {
 
   async getAllByName(req, res) {
     try {
-      const productsName = new RegExp(req.params.name, 'i');
+      const productsName = new RegExp(req.params.name, "i");
       const products = await Product.find({ name: productsName });
       res.send(products);
     } catch (error) {
@@ -106,7 +94,7 @@ const ProductController = {
     try {
       const products = await Product.find(
         { price: req.params.price }, // Equivale a Op.eq
-        'name price image'
+        "name price image"
       );
       res.send(products);
     } catch (error) {
@@ -120,7 +108,7 @@ const ProductController = {
       const maxprice = parseFloat(req.params.maxprice);
       const products = await Product.find(
         { price: { $gte: minprice, $lte: maxprice } }, // $gte y $lte equivalen a BETWEEN
-        'name price image'
+        "name price image"
       );
       res.send(products);
     } catch (error) {
