@@ -11,7 +11,7 @@ router.delete('/:id', /* authentication, isAdmin, */ ProductController.delete);
 
 // Rutas de consulta
 router.get('/', ProductController.getAllWithCategories);
-router.get('/:id', ProductController.getById); // No estoy seguro de esto. COMPROBAR
+router.get('/:id', ProductController.getById);
 router.get('/name/:name', ProductController.getAllByName);
 router.get('/price/:price', ProductController.getAllByPrice);
 router.get('/price-range/:minprice/:maxprice', ProductController.getAllByPriceRange);
