@@ -21,7 +21,7 @@ const seedProducts = async () => {
         price: 20,
         description:
           "¡El patito más musculado del estanque! Con bíceps inflables y gafas de sol, este pato dice “I'll be Cuack” mientras protege tu estantería del aburrimiento.",
-        image: "https://drive.google.com/uc?export=view&id=1GbiDbDrTp2lEbUJfabNUNU1ernxWCneF",
+        image: "https://i.imgur.com/DCIIyDV.png",
         categories: [actor._id, celebridad._id, megacuak.id],
       },
       {
@@ -29,7 +29,7 @@ const seedProducts = async () => {
         price: 23,
         description:
           "Altavoz bluetooth en forma de pato pop-star. Con luces LED y sonidos que graznan al ritmo de la música. Ideal para cuackncerts en la ducha.",
-        image: "https://drive.google.com/uc?export=view&id=1UYIfc5zaiKkyALuVZSjnEPaYNUANQQ1G",
+        image: "https://i.imgur.com/YJvs2TX.png",
         categories: [cantante._id, megacuak.id, cuakito.id],
       },
       {
@@ -37,7 +37,7 @@ const seedProducts = async () => {
         price: 3,
         description:
           "El patopatín más futurista: va solo, tiene luces y ¡cuackea cuando frena! Alimentado por IA (Inteligencia Avestruz). Vuela bajo… pero con estilo.",
-        image: "https://drive.google.com/uc?export=view&id=1E-78dl0rMWheR3aBpYpu1aPO8Ay8bfmL",
+        image: "https://i.imgur.com/ecjpk4k.png",
         categories: [celebridad._id, cuakito.id],
       },
       {
@@ -45,7 +45,7 @@ const seedProducts = async () => {
         price: 19,
         description:
           "Este altavoz patuno no miente: sus caderas se mueven solo con reguetón. Ideal para animar el nido. ¡Shake that cuack!",
-        image: "https://drive.google.com/uc?export=view&id=1hqHjvpa5_sWhwIYWV9BGUzhvq9IUYWoh",
+        image: "https://i.imgur.com/TMVbcYd.png",
         categories: [cantante._id, celebridad._id, megacuak.id],
       },
       {
@@ -53,7 +53,7 @@ const seedProducts = async () => {
         price: 25,
         description:
           "Saltos, patadas y graznidos acrobáticos. Este pato experto en kung-fu hace piruetas con un solo dedo y sobrevive a cualquier estantería.",
-        image: "https://drive.google.com/uc?export=view&id=1sjRI3yZhKP0-7RVXw-CUXckNoRnECGDh",
+        image: "https://i.imgur.com/BI6e4VW.png",
         categories: [actor._id, cuakito._id, megacuak.id],
       },
       {
@@ -61,7 +61,7 @@ const seedProducts = async () => {
         price: 150,
         description:
           "Invencible, indestructible y... graznador. Este patito rompe lo que sea con la mirada. Si Duck Norris te mira, ya es demasiado tarde.",
-        image: "https://drive.google.com/uc?export=view&id=1Eu-2dSDAJtSv8OUQFZ6j98NSIEjSRyif",
+        image: "https://i.imgur.com/c8FIFkG.png",
         categories: [actor._id, celebridad.id, megacuak.id, cuakito.id],
       },
       {
@@ -69,7 +69,7 @@ const seedProducts = async () => {
         price: 28,
         description:
           "Gorro excéntrico con estilo extravagante. Ideal para fiestas, desfiles o conciertos en el lago. Porque Born this Cuack.",
-        image: "https://drive.google.com/uc?export=view&id=1pD2bVQrJg8eSwAroyHXdzSo3VIZVFN2z",
+        image: "https://i.imgur.com/rcM4ebf.png",
         categories: [cantante._id, megacuak._id, celebridad._id],
       },
       {
@@ -77,7 +77,7 @@ const seedProducts = async () => {
         price: 18,
         description:
           "Zapatillas miniatura con cámara de aire... ¡para patos! Cada salto deja una huella en forma de charquito. Fly over the pond.",
-        image: "https://drive.google.com/uc?export=view&id=1J_8CuwoFKZkssjKqKh1rFsQrleom9txX",
+        image: "https://i.imgur.com/sYpzYTJ.png",
         categories: [deportista._id],
       },
       {
@@ -85,7 +85,7 @@ const seedProducts = async () => {
         price: 15,
         description:
           "Micrófono patuno que escupe rimas con flow. Viene con capucha y actitud. Ideal para batallas de freestyle junto al lago.",
-        image: "https://drive.google.com/uc?export=view&id=1rlBHuquvCnNA-XIRBJFR8M0RYHtbK29r",
+        image: "https://i.imgur.com/Oz3vURi.png",
         categories: [cantante._id, cuakito._id],
       },
       {
@@ -93,7 +93,7 @@ const seedProducts = async () => {
         price: 12,
         description:
           "Perfume con esencia a estanque misterioso. Un aroma irresistible con notas de nenúfar y pasión patuna. Un cuack, mil emociones.",
-        image: "https://drive.google.com/uc?export=view&id=1cIz0RAvPlDuMeCuO1Nzz3L_r585PTZKf",
+        image: "https://i.imgur.com/oQrSX0v.png",
         categories: [actor._id, cuakito.id],
       },
       {
@@ -101,7 +101,7 @@ const seedProducts = async () => {
         price: 8,
         description:
           "Balón legendario para entrenar en la charca. Precisión alemana y cuack estratégico. El mediocampista que todo estanque necesita.",
-        image: "https://drive.google.com/uc?export=view&id=12SaX9AAxOs3YIviD1L0kJ65Qk7h-nX5z",
+        image: "https://i.imgur.com/mlwWDlG.png",
         categories: [deportista._id, celebridad._id],
       },
       {
@@ -109,7 +109,7 @@ const seedProducts = async () => {
         price: 24,
         description:
           "Cuaderno mágico donde cada página tiene aroma a pluma mojada. Para escribir cuentos épicos con un toque de realismo... patuno.",
-        image: "https://drive.google.com/uc?export=view&id=1FlCd9i_BxtBmqPqaULU393jHn7VDT7R6",
+        image: "https://i.imgur.com/zx9LFVn.png",
         categories: [escritor._id, megacuak.id],
       },
       {
@@ -117,7 +117,7 @@ const seedProducts = async () => {
         price: 14,
         description:
           "Micrófono vintage con voz de pato y efecto reverb romántico. Ideal para serenatas en la charca. Solo para patos con alma de balada.",
-        image: "https://drive.google.com/uc?export=view&id=1BvyUcRJ634f6bUeiv5KjAgwDLo8roJ6M",
+        image: "https://i.imgur.com/DUwuUCT.png",
         categories: [cantante.id, cuakito.id],
       },
     ];
