@@ -34,7 +34,6 @@ const userSchema = new mongoose.Schema(
     },
     adress: {
       type: String,
-      required: [true, 'Por favor, introduce una dirección'],
     },
     tokens: [],
     orders: [

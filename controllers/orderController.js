@@ -29,6 +29,16 @@ const OrderController = {
 
       await order.save();
 
+      user.orders.push(order._id);
+      await user.save();
+
+      await Promise.all(
+        validProducts.map(async (product) => {
+          product.orders.push(order._id);
+          await product.save();
+        })
+      );
+
       res.status(201).json({
         msg: 'Orden creada con éxito',
         order,
