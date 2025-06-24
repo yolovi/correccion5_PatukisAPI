@@ -157,6 +157,7 @@ const UserController = {
           path: 'orders',
           populate: {
             path: 'products',
+            model: 'Product',
             select: 'name price image',
           },
         });
