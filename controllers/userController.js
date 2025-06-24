@@ -151,7 +151,14 @@ const UserController = {
         .select('-password -tokens') // Oculta contraseña y tokens
         .populate({
           path: 'wishlist',
-          select: 'name price',
+          select: 'name price image',
+        })
+        .populate({
+          path: 'orders',
+          populate: {
+            path: 'products',
+            select: 'name price image',
+          },
         });
 
       if (!user) {
