@@ -5,9 +5,9 @@ const ProductController = require('../controllers/productController');
 const { authentication, isAdmin } = require('../middlewares/authentication');
 
 // Rutas CRUD básicas
-router.post('/', /* authentication, isAdmin, uploadFor('products').single('image'), */ ProductController.create);
-router.put('/:id', /* authentication, isAdmin, uploadFor('products').single('image'), */ ProductController.update);
-router.delete('/:id', /* authentication, isAdmin, */ ProductController.delete);
+router.post('/', authentication, isAdmin, uploadFor('products').single('image'), ProductController.create);
+router.put('/:id', authentication, isAdmin, uploadFor('products').single('image'), ProductController.update);
+router.delete('/:id', authentication, isAdmin, ProductController.delete);
 
 // Rutas de consulta
 router.get('/', ProductController.getAllWithCategories);
