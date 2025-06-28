@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema(
     },
     adress: {
       type: String,
+      default: null,
     },
     tokens: [],
     orders: [

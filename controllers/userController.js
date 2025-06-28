@@ -16,7 +16,7 @@ const UserController = {
         password: password,
         role: 'user',
         confirmed: false,
-        // image: '/uploads/default.jpg', // Imagen por defecto asignada al nuevo usuario
+        image: 'https://i.imgur.com/6ihpcUJ.png',
       });
 
       // const emailToken = jwt.sign({ email: req.body.email }, jwt_secret, { expiresIn: '48h' });
@@ -185,7 +185,7 @@ const UserController = {
       if (email) updateFields.email = email;
 
       if (req.file) {
-        updateFields.image = `/uploads/users/${req.file.filename}`; // Usando su middleware
+        updateFields.image = `/uploads/users/${req.file.filename}`;
       }
 
       const updatedUser = await User.findByIdAndUpdate(userId, updateFields, { new: true }).select('-password -tokens');

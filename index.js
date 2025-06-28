@@ -13,6 +13,7 @@ dbConnection();
 // MIDDLEWARE
 app.use(express.json());
 app.use(cors());
+app.use('/uploads', express.static(path.join(__dirname, 'assets/uploads')));
 
 // ENDPOINTS
 app.use('/products', require('./routes/productRoutes'));
