@@ -7,6 +7,7 @@ const PORT = process.env.PORT;
 const swaggerUI = require('swagger-ui-express');
 const docs = require('./docs/index');
 const cors = require('cors');
+const path = require('path');
 
 dbConnection();
 
