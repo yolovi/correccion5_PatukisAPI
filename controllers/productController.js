@@ -44,7 +44,9 @@ const ProductController = {
       res.status(500).send({ msg: "Error al actualizar producto", error });
     }
   },
-
+/**CORRECCION:
+ * hay que comprobar que el producto existe, de la misma forma que en la anterior funcion
+ */
   async delete(req, res) {
     try {
       await Product.findByIdAndDelete(req.params.id);
@@ -67,6 +69,9 @@ const ProductController = {
     }
   },
 
+  /**CORRECCION:
+   * de nuevo no se comprueba si el producto existe
+   */
   async getById(req, res) {
     try {
       const product = await Product.findById(

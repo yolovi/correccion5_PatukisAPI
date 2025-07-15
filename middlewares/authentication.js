@@ -44,7 +44,10 @@ const isAuthorReview = async (req, res, next) => {
     if (!review) {
       return res.status(404).json({ msg: 'Review no encontrada' });
     }
-
+/**CORRECCION:
+ * Este middleware no se usa solo para actualizar comentarios, este mensaje no es correcto.
+ * Un admin debe poder borrar una reseña, no veo esa posibilidad aquí.
+ */
     if (review.user.toString() !== req.user._id.toString()) {
       return res.status(403).json({ msg: 'No tiene permiso para modificar esta review' });
     }

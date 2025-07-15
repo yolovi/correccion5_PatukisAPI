@@ -4,6 +4,10 @@ const { uploadFor } = require('../middlewares/multer');
 const ReviewController = require('../controllers/reviewController');
 const { authentication, isAuthorReview } = require('../middlewares/authentication');
 
+/**CORRECCION:
+ * desestructurar ReviewController
+ * middlewares entre [] y cuando son muchos los dividimos en lineas
+ */
 router.post('/', authentication, uploadFor('reviews').single('image'), ReviewController.create);
 router.get('/', ReviewController.getAll);
 router.get('/:id', ReviewController.getById);

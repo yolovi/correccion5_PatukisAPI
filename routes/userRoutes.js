@@ -4,6 +4,9 @@ const UserController = require('../controllers/userController');
 const { uploadFor } = require('../middlewares/multer');
 const { authentication } = require('../middlewares/authentication');
 
+/**CORRECCION:
+ * desestructurar UserController
+ */
 router.post('/', UserController.create);
 router.post('/login', UserController.login);
 router.get('/confirm/:emailToken', UserController.confirm);
